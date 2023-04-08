@@ -37,6 +37,12 @@ function findObjectByPropertyValue(jsonArray, propertyName, targetValue) {
 
   app.use(cors());
 
+  app.use(function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+  });
+
   passport.use(new GitHubStrategy({
     clientID: GITHUB_CLIENT_ID,
     clientSecret: GITHUB_CLIENT_SECRET,
@@ -115,10 +121,6 @@ app.get('/BackEnd/Products/:value', (req ,res) => {
  * Setup
  * -----------------------------------------------------------------------------
  */
-
-const fetch = (...args) =>
-    import('node-fetch').then( ({default: fetch}) => fetch(...args) );
-
   
 app.use(bodyParser.json());
 
