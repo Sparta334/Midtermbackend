@@ -8,11 +8,16 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 require('dotenv').config();
 var rqs = recombee.requests;
-const session = require('express-session');
 const request = require('request');
 const passport = require('passport');
+const session =require('express-session') 
+
 var cookieParser = require('cookie-parser');
 const GitHubStrategy = require('passport-github').Strategy;
+
+var RedisStore = require('connect-redis');
+const { send } = require('process');
+var redis = require("redis").createClient();
 
 
 
@@ -34,28 +39,7 @@ function findObjectByPropertyValue(jsonArray, propertyName, targetValue) {
     return null;
   }
 
-
-  app.use(cors());
-
-  app.use(function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    next();
-  });
-
-  passport.use(new GitHubStrategy({
-    clientID: GITHUB_CLIENT_ID,
-    clientSecret: GITHUB_CLIENT_SECRET,
-    callbackURL: "https://energetic-fox-pajamas.cyclic.app/auth/github/callback"
-  },
-  function(accessToken, refreshToken, profile, done) {
-    User.findOrCreate({ githubId: profile.id }, function (err, user) {
-      return done(err, user);
-    });
-  }
-));
-
-
+ 
 app.get('/BackEnd/SearchContent/:value' , (req ,res) =>{
 
     const value = req.params.value;
@@ -113,6 +97,12 @@ app.get('/BackEnd/Products/:value', (req ,res) => {
     
 
 
+app.use(session({
+
+  secret : 'cats'
+
+}))
+
 
 //登入
 
@@ -121,37 +111,15 @@ app.get('/BackEnd/Products/:value', (req ,res) => {
  * Setup
  * -----------------------------------------------------------------------------
  */
-  
-app.use(bodyParser.json());
+app.use(cors());
 
 
-app.get('/logout', (req, res) => {
-  req.logout();
-});
-
-
-app.get('/auth/github',
-  passport.authenticate('github', { scope: [ 'user:email' ] }));
+// 将用户 ID 序列化到 session 中
 
 
 
 
-  app.get('/auth/github/callback', 
-  passport.authenticate('github', { failureRedirect: '/profile' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
-
-  });
-
-app.get('/profile'), ( (req, res) => {
-  // 检查用户是否已登录
-
-  res.send(req.user.id);
-
-})
-
-
-app.listen(port , () =>{
+app.listen(8000 , () =>{
 
   console.log("A")
 
