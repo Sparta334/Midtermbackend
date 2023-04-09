@@ -19,7 +19,7 @@ var RedisStore = require('connect-redis');
 const { send } = require('process');
 var redis = require("redis").createClient();
 
-
+app.use(cors());
 
 
 var client = new recombee.ApiClient(
@@ -111,7 +111,6 @@ app.use(session({
  * Setup
  * -----------------------------------------------------------------------------
  */
-app.use(cors());
 
 
 // 将用户 ID 序列化到 session 中
