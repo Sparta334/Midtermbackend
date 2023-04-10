@@ -139,11 +139,11 @@ app.post('/BackEnd/Detail',( req, res, next) => {
     }
   );
 
-  client.send(new recombee.RecommendItemsToUser (userData, 8, {
+  client.send(new rqs.RecommendItemsToUser(userData, 8, {
     // optional parameters:
     'cascadeCreate':true,
     'returnProperties': true,
-  }),(res) =>{
+  }),(err, response) =>{
 
     UserItem = res;
 
