@@ -143,7 +143,11 @@ app.post('/BackEnd/Detail',( req, res, next) => {
     // optional parameters:
     'cascadeCreate':true,
     'returnProperties': true,
-  }))
+  }) , (resqqq) =>{
+
+
+    return resqqq
+  }  )
 
   console.log("Data"+UserItem)
 
