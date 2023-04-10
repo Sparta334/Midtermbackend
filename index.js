@@ -143,10 +143,10 @@ app.post('/BackEnd/Detail',( req, res, next) => {
     // optional parameters:
     'cascadeCreate':true,
     'returnProperties': true,
-  }) , (resqqq) =>{
+  }) , (err, response) =>{
 
 
-    return resqqq
+    return response
   }  )
 
   console.log("Data"+UserItem)
@@ -165,18 +165,18 @@ app.post('/BackEnd/DetailHome',( req, res, next) => {
 
   console.log(userData)
   
-  client.send(new rqs.RecommendItemsToUser(userData, 8, {
+  UserItem =  client.send(new rqs.RecommendItemsToUser(userData, 8, {
     // optional parameters:
     'cascadeCreate':true,
     'returnProperties': true,
   }),(err, response) =>{
 
     console.log(response);
-    res.send(response);
+    return response
 
   });
   
-
+  res.send(UserItem);
 
 
 })
