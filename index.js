@@ -152,7 +152,7 @@ app.post('/BackEnd/Detail',( req, res, next) => {
 
   });
   
-  res.send(response);
+  res.send(UserItem);
 
 
 })
