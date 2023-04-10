@@ -118,12 +118,6 @@ app.use(session({
 
 
 
-app.listen(8000 , () =>{
-
-  console.log("A")
-
-})
-
 
 // recombeee
 
@@ -134,6 +128,9 @@ app.post('/BackEnd/Detail', (req ,res) => {
   let UserItem = null;
   const userData = req.body.UserData;
   const userViewData = req.body.UserViewData
+
+  console.log(userViewData)
+
   client.send(new rqs.AddDetailView(userData, userViewData, {timestamp: '2014-07-20T02:49:45+02:00', cascadeCreate: true}),
     (err, response) => {
     //...
@@ -152,6 +149,13 @@ app.post('/BackEnd/Detail', (req ,res) => {
 
 
   res.send(UserItem)
+
+})
+
+
+app.listen(8000 , () =>{
+
+  console.log("A")
 
 })
 
