@@ -124,3 +124,42 @@ app.listen(8000 , () =>{
 
 })
 
+
+// recombeee
+
+
+app.post('/BackEnd/Detail', (req ,res) => {
+
+
+  let UserItem = null;
+  const userData = req.body.UserData;
+  const userViewData = req.body.UserViewData
+  client.send(new rqs.AddDetailView(userData, userViewData, {timestamp: '2014-07-20T02:49:45+02:00', cascadeCreate: true}),
+    (err, response) => {
+    //...
+    }
+  );
+
+  client.send(new recombee.RecommendItemsToUser (userData, 8, {
+    // optional parameters:
+    'cascadeCreate':true,
+    'returnProperties': true,
+  }),(res) =>{
+
+    UserItem = res;
+
+  });
+
+
+  res.send(UserItem)
+
+})
+
+
+
+
+// client.send(new recombee.AddDetailView('2c169e575644d840838e', 'xyz'),
+//     (err, response) => {
+//     //...
+//     }
+// );
