@@ -146,11 +146,13 @@ app.post('/BackEnd/Detail',( req, res, next) => {
   }),(err, response) =>{
 
     console.log(response);
-    res.send(response);
+
+    UserItem = response;
+
 
   });
   
-
+  res.send(response);
 
 
 })
