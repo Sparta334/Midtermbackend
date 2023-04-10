@@ -99,13 +99,6 @@ app.get('/BackEnd/Products/:value', (req ,res) => {
     
 
 
-app.use(session({
-
-  secret : 'cats'
-
-}))
-
-
 //登入
 
 /**
@@ -124,7 +117,7 @@ app.use(session({
 // recombeee
 
 
-app.post('/BackEnd/Detail',( req, res, next) => {
+app.post('/BackEnd/Detail',( req, res) => {
 
 
   let UserItem = null;
@@ -143,9 +136,10 @@ app.post('/BackEnd/Detail',( req, res, next) => {
     // optional parameters:
     'cascadeCreate':true,
     'returnProperties': true,
-  }) , (err) =>{
+  }) , (err, response)  =>{
 
-    UserItem = err
+    UserItem = response
+
   }  )
 
   console.log("Data"+UserItem)
@@ -156,27 +150,28 @@ app.post('/BackEnd/Detail',( req, res, next) => {
 
 })
 
-app.post('/BackEnd/DetailHome',( req, res, next) => {
+app.post('/BackEnd/DetailHome',( req, res) => {
 
 
   let UserItem = null;
   const userData = req.body.data.UserData;
 
   console.log(userData)
-  
-  UserItem =  client.send(new rqs.RecommendItemsToUser(userData, 8, {
+ 
+   client.send(new rqs.RecommendItemsToUser(userData, 8, {
     // optional parameters:
     'cascadeCreate':true,
     'returnProperties': true,
   }),(err, response) =>{
 
     console.log(response);
-    return response
+    UserItem = response
+
 
   });
   
-  res.send(UserItem);
 
+  res.send(UserItem);
 
 })
 
