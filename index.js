@@ -124,7 +124,7 @@ app.use(session({
 // recombeee
 
 
-app.get('/BackEnd/Detail',( req, res, next) => {
+app.post('/BackEnd/Detail',( req, res, next) => {
 
 
   let UserItem = null;
