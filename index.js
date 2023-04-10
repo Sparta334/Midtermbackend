@@ -12,6 +12,7 @@ const request = require('request');
 const passport = require('passport');
 const session =require('express-session') 
 
+
 var cookieParser = require('cookie-parser');
 const GitHubStrategy = require('passport-github').Strategy;
 
@@ -20,7 +21,8 @@ const { send } = require('process');
 var redis = require("redis").createClient();
 
 app.use(cors());
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 var client = new recombee.ApiClient(
 
