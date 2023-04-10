@@ -128,8 +128,8 @@ app.post('/BackEnd/Detail',( req, res, next) => {
 
 
   let UserItem = null;
-  const userData = req.body.UserData;
-  const userViewData = req.body.UserViewData
+  const userData = req.UserData;
+  const userViewData = req.UserViewData
 
   console.log(req.body)
 
