@@ -155,6 +155,31 @@ app.post('/BackEnd/Detail',( req, res, next) => {
 
 })
 
+app.post('/BackEnd/DetailHome',( req, res, next) => {
+
+
+  let UserItem = null;
+  const userData = req.body.data.UserData;
+
+  console.log(userData)
+  
+  client.send(new rqs.RecommendItemsToUser(userData, 8, {
+    // optional parameters:
+    'cascadeCreate':true,
+    'returnProperties': true,
+  }),(err, response) =>{
+
+    console.log(response);
+    res.send(response);
+
+  });
+  
+
+
+
+})
+
+
 
 app.listen(8000 , () =>{
 
