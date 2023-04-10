@@ -145,7 +145,7 @@ app.post('/BackEnd/Detail',( req, res, next) => {
     'returnProperties': true,
   }) , (err, response) =>{
 
-
+    UserItem = response
     return response
   }  )
 
