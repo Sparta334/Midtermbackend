@@ -138,14 +138,14 @@ app.post('/BackEnd/Detail',( req, res) => {
     'returnProperties': true,
   }) , (err, response)  =>{
 
-    UserItem = response
+    res.send(response);
 
   }  )
 
-  console.log("Data"+UserItem)
+
 
   
-  res.send(UserItem);
+
 
 
 })
@@ -164,14 +164,12 @@ app.post('/BackEnd/DetailHome',( req, res) => {
     'returnProperties': true,
   }),(err, response) =>{
 
-    console.log(response);
-    UserItem = response
-
-
+    
+    res.send(response);
   });
   
 
-  res.send(UserItem);
+
 
 })
 
