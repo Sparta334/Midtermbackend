@@ -126,7 +126,7 @@ app.post('/BackEnd/Detail',( req, res) => {
 
   console.log(userData)
 
-  client.send(new rqs.AddDetailView(userData, userViewData, {timestamp: '2014-07-20T02:49:45+02:00', cascadeCreate: false}),
+  client.send(new rqs.AddDetailView(userData, userViewData, {timestamp: '2014-07-20T02:49:45+02:00', cascadeCreate: true}),
     (err, response) => {
     //...
     }
