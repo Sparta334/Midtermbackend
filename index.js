@@ -134,8 +134,9 @@ app.post('/BackEnd/Detail',( req, res) => {
 
   client.send(new rqs.RecommendItemsToUser(userData, 8, {
     // optional parameters:
-    'cascadeCreate':true,
+    'cascadeCreate':false,
     'returnProperties': true,
+    'rotationRate': 0.8
   }) , (err, response)  =>{
 
     res.send(response);
