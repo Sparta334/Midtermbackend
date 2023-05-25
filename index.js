@@ -124,7 +124,7 @@ app.post('/BackEnd/Detail',( req, res) => {
   const userData = req.body.data.UserData;
   const userViewData = req.body.data.UserViewData
 
-  console.log(userData)
+  console.log(userViewData)
 
   client.send(new rqs.AddDetailView(userData, userViewData, {timestamp: new Date().getTime(), cascadeCreate: true}),
     (err, response) => {
