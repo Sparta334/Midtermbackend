@@ -190,15 +190,34 @@ app.post('/BackEnd/Profile',( req, res) => {
         return { product };
       });
 
-      console.log(limitedProducts)
-      res.send(limitedProducts);
+      UserItem = product;
     }
   );
 
+  client.send(new rqs.ListItems({
+    // optional parameters:
+    'returnProperties': true,
+  }),  (err, response) => {
+    
+        const filteredProducts = response.filter((product) => {
+         return UserItem.itemId.includes(product.itemId);
+
+         
+            }
+
+
+      
+       );
+
+       res.send(filteredProducts);
+  
+  
+  });
  
    
 
  })
+
 
 
 
