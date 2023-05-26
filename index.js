@@ -186,7 +186,7 @@ app.post('/BackEnd/Profile',( req, res) => {
   client.send(new rqs.ListUserDetailViews(userData),
     (err, response) => {
       
-      const limitedProducts = filteredProducts.slice(0, 5).map((product) => {
+      const limitedProducts = response.slice(0, 5).map((product) => {
         return { product };
       });
 
