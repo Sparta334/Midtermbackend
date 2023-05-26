@@ -176,6 +176,35 @@ app.post('/BackEnd/DetailHome',( req, res) => {
 
 
 
+app.post('/BackEnd/Profile',( req, res) => {
+
+
+  let UserItem = null;
+  const userData = req.body.data.UserData;
+
+
+  client.send(new rqs.ListUserDetailViews(userData),
+    (err, response) => {
+      
+      const limitedProducts = filteredProducts.slice(0, 5).map((product) => {
+        return { product };
+      });
+
+      console.log(limitedProducts)
+      res.send(limitedProducts);
+    }
+  );
+
+ 
+   
+
+ })
+
+
+
+
+
+
 app.listen(8000 , () =>{
 
   console.log("A")
