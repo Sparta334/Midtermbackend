@@ -190,7 +190,7 @@ app.post('/BackEnd/Profile',( req, res) => {
         return { product };
       });
 
-      UserItem = product;
+      UserItem = limitedProducts;
     }
   );
 
@@ -209,6 +209,7 @@ app.post('/BackEnd/Profile',( req, res) => {
       
        );
 
+       console.log(filteredProducts)
        res.send(filteredProducts);
   
   
