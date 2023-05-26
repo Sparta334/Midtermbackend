@@ -136,7 +136,7 @@ app.post('/BackEnd/Detail',( req, res) => {
     // optional parameters:
     'cascadeCreate':false,
     'returnProperties': true,
-    'rotationRate': 0.8
+    'rotationRate': 0.3
   }) , (err, response)  =>{
 
     res.send(response);
