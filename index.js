@@ -191,31 +191,33 @@ app.post('/BackEnd/Profile',( req, res) => {
       });
 
       UserItem = limitedProducts;
+
+      client.send(new rqs.ListItems({
+        // optional parameters:
+        'returnProperties': true,
+      }),  (err, response) => {
+        
+            const filteredProducts = response.filter((product) => {
+             return UserItem.itemId.includes(product.itemId);
+    
+             
+                }
+    
+    
+          
+           );
+    
+           console.log(filteredProducts)
+           res.send(filteredProducts);
+      
+      
+      });
+     
+       
     }
   );
 
-  client.send(new rqs.ListItems({
-    // optional parameters:
-    'returnProperties': true,
-  }),  (err, response) => {
-    
-        const filteredProducts = response.filter((product) => {
-         return UserItem.itemId.includes(product.itemId);
 
-         
-            }
-
-
-      
-       );
-
-       console.log(filteredProducts)
-       res.send(filteredProducts);
-  
-  
-  });
- 
-   
 
  })
 
