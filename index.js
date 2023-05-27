@@ -232,14 +232,17 @@ app.post('/BackEnd/Profile',( req, res) => {
   const userData = req.body.data.UserData;
 
   console.log(JSON.stringify(userData))
-  client.send(new rqs.AddUser(JSON.stringify(userData)),
+
+  client.send(new rqs.AddDetailView(userData, "001", {
+    'cascadeCreate':true,
+  }),(error ,response ) => {
+
+    res.send("seucces");
   
-  (err, response) =>{
-    
-    console.log(response)
-    
   });
   
+  
+
   
  })
 
