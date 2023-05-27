@@ -197,7 +197,9 @@ app.post('/BackEnd/Profile',( req, res) => {
       }),  (err, response) => {
         
             const filteredProducts = limitedProducts.filter((product) => {
-             return response.itemId.includes(product.itemId);
+              
+
+             return  response.some(obj2 => limitedProducts.itemId === obj2.itemId)
     
              
             }
