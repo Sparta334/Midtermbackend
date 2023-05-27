@@ -196,8 +196,8 @@ app.post('/BackEnd/Profile',( req, res) => {
         'returnProperties': true,
       }),  (err, response) => {
         
-            const filteredProducts = response.filter((product) => {
-             return limitedProducts.itemId.includes(product.itemId);
+            const filteredProducts = limitedProducts.filter((product) => {
+             return response.itemId.includes(product.itemId);
     
              
             }
