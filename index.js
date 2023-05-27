@@ -184,7 +184,7 @@ app.post('/BackEnd/Profile',( req, res) => {
       console.log(response);
       const sortedArray = response.sort((a, b) => b.timestamp - a.timestamp)
       console.log("sortedArray"+JSON.stringify(sortedArray));
-      UserItem = JSON.parse(sortedArray.slice(0,5));
+      UserItem = sortedArray.slice(1);
       console.log("limitedProducts : " +JSON.stringify(UserItem));
       
      
@@ -192,10 +192,10 @@ app.post('/BackEnd/Profile',( req, res) => {
     }
   );
 
-  const firstItem = UserItem[0];
+  const firstItem = UserItem;
   const itemId = firstItem.itemId;
 
-  client.send(new rqs.SearchItems("undefined", itemId , 1, {
+  client.send(new rqs.SearchItems("undefined", itemId) , 1, {
     'cascadeCreate': false,
     'returnProperties': true,
   }), (err, response) =>{
