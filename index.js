@@ -203,10 +203,10 @@ app.post('/BackEnd/Profile',( req, res) => {
     console.log("response : " +JSON.stringify(response));
 
     
-        const filteredProducts = response.filter((product) => {
+        const filteredProducts = response.filter((produce) => {
           
           
-         return UserItem.some(obj2 => product.itemId === obj2..itemId)
+         return UserItem.some(obj2 => produce.itemId === obj2.product.itemId)
 
          
         }
