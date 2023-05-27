@@ -186,6 +186,7 @@ app.post('/BackEnd/Profile',( req, res) => {
   client.send(new rqs.ListUserDetailViews(userData),
     (err, response) => {
       
+      console.log(response);
       const limitedProducts = response.slice(0, 5).map((product) => {
         return { product };
       });
@@ -201,10 +202,9 @@ app.post('/BackEnd/Profile',( req, res) => {
              return UserItem.itemId.includes(product.itemId);
     
              
-                }
+            }
     
-    
-          
+   
            );
     
            console.log(filteredProducts)
