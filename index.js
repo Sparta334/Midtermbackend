@@ -73,13 +73,16 @@ app.get('/BackEnd/Products/:value', (req ,res) => {
     const value = decodeURIComponent(req.params.value);
 
 
-    client.send(new rqs.ListItems({
-        'returnProperties': true
-    }) , (err, response) =>{
+    client.send(new rqs.SearchItems("undefined", value, 1, {
+      'cascadeCreate': false,
+      'returnProperties': true,
+    }), (err, response) =>{
 
+        res.send(response);
+        console.log(response)
         const result = findObjectByPropertyValue(response, 'ProductName', value);
-        console.log(result)
-        res.send(result);
+        
+       
      }
     
     
