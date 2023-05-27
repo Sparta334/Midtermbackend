@@ -187,19 +187,19 @@ app.post('/BackEnd/Profile',( req, res) => {
     (err, response) => {
       
       console.log(response);
-      const limitedProducts = response.slice(0, 5).map((product) => {
+      const limitedProducts = response.slice(-5).map((product) => {
         return { product };
       });
-
+      console.log("limitedProducts : " +limitedProducts);
       client.send(new rqs.ListItems({
         // optional parameters:
         'returnProperties': true,
       }),  (err, response) => {
-        
+        console.log("response : " +response);
             const filteredProducts = limitedProducts.filter((product) => {
               
-
-             return  response.some(obj2 => product.itemId === obj2.itemId)
+              
+             return response.some(obj2 => product.itemId === obj2.itemId)
     
              
             }
