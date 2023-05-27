@@ -204,11 +204,6 @@ app.post('/BackEnd/Profile',( req, res) => {
     }
   );
 
-  const firstItem = UserItem;
-  const itemId = firstItem.itemId;
-
- 
- 
 
 
  })
