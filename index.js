@@ -194,7 +194,7 @@ app.post('/BackEnd/Profile',( req, res) => {
 
   
 
-  client.send(new rqs.SearchItems("undefined", UserItem.map(obj => obj.itemId ) , 5, {
+  client.send(new rqs.SearchItems("undefined","w" , 5, {
     'cascadeCreate': false,
     'returnProperties': true,
   }), (err, response) =>{
