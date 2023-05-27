@@ -192,9 +192,10 @@ app.post('/BackEnd/Profile',( req, res) => {
     }
   );
 
-  
+  const firstItem = UserItem[0];
+  const itemId = firstItem.itemId;
 
-  client.send(new rqs.SearchItems("undefined", UserItem[0].itemId , 1, {
+  client.send(new rqs.SearchItems("undefined", itemId , 1, {
     'cascadeCreate': false,
     'returnProperties': true,
   }), (err, response) =>{
