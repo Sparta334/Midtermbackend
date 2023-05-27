@@ -192,22 +192,24 @@ app.post('/BackEnd/Profile',( req, res) => {
     }
   );
 
-
-  for(let i = 0 ; i< 5 ;i++){
   
-    client.send(new rqs.SearchItems("undefined", UserItem[i].itemId, 1, {
-      'cascadeCreate': false,
-      'returnProperties': true,
-    }), (err, response) =>{
+  const itemIds = [];
   
-         console.log(response)
-         res.send(response);
-    
-    
-    });
+  for (const item of UserItem) {
+    const itemId = UserItem.itemId;
+    itemIds.push(itemId);
   }
 
- 
+  client.send(new rqs.SearchItems("undefined", itemIds  , 1, {
+    'cascadeCreate': false,
+    'returnProperties': true,
+  }), (err, response) =>{
+
+       console.log(response)
+       res.send(response);
+  
+  
+  });
 
  
 
