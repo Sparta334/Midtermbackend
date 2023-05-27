@@ -176,7 +176,7 @@ app.post('/BackEnd/Profile',( req, res) => {
 
 
   const userData = req.body.data.UserData;
-  let UserItem =null;
+  let UserItem = [];
 
   client.send(new rqs.ListUserDetailViews(userData),
     (err, response) => {
