@@ -187,33 +187,39 @@ app.post('/BackEnd/Profile',( req, res) => {
     (err, response) => {
       
       console.log(response);
-      const limitedProducts = response.slice(-5);
-      console.log("limitedProducts : " +limitedProducts);
-      client.send(new rqs.ListItems({
-        // optional parameters:
-        'returnProperties': true,
-      }),  (err, response) => {
-        console.log("response : " +response);
-            const filteredProducts = limitedProducts.filter((product) => {
-              
-              
-             return response.some(obj2 => product.itemId === obj2.itemId)
-    
-             
-            }
-    
-   
-           );
-    
-           console.log(filteredProducts)
-           res.send(filteredProducts);
-      
-      
+      const sortedArray = response.sort((a, b) => b.timestamp - a.timestamp)
+      UserItem = sortedArray.slice(0,5).map((product) => {
+        return { product };
       });
+      console.log("limitedProducts : " +UserItem);
      
        
     }
   );
+
+  client.send(new rqs.ListItems({
+    // optional parameters:
+    'returnProperties': true,
+  }),  (err, response) => {
+    console.log("response : " +response);
+
+    
+        const filteredProducts = UserItem.filter((product) => {
+          
+          
+         return response.some(obj2 => product.itemId === obj2.itemId)
+
+         
+        }
+
+
+       );
+
+       console.log(filteredProducts)
+       res.send(filteredProducts);
+  
+  
+  });
 
 
 
