@@ -180,44 +180,47 @@ app.post('/BackEnd/Profile',( req, res) => {
 
 
   const userData = req.body.data.UserData;
-
+  let UserItem =null;
 
   client.send(new rqs.ListUserDetailViews(userData),
     (err, response) => {
       
       console.log(response);
       const sortedArray = response.sort((a, b) => b.timestamp - a.timestamp)
-      const UserItem = sortedArray.slice(0,5).map((product) => {
+      console.log("sortedArray"+sortedArray);
+      UserItem = sortedArray.slice(0,5).map((product) => {
         return { product };
       });
       console.log("limitedProducts : " +UserItem);
       
-      client.send(new rqs.ListItems({
-        'returnProperties': true,
-      }),  (err, response) => {
-        console.log("response : " +response);
-    
-        
-            const filteredProducts = response.filter((product) => {
-              
-              
-             return UserItem.some(obj2 => product.product.itemId === obj2.itemId)
-    
-             
-            }
-    
-    
-           );
-    
-           console.log(filteredProducts)
-           res.send(filteredProducts);
-      
-      
-      });
-    
+     
        
     }
   );
+
+  client.send(new rqs.ListItems({
+    // optional parameters:
+    'returnProperties': true
+    }) , (err, response) =>{
+    console.log("response : " +response);
+
+    
+        const filteredProducts = response.filter((product) => {
+          
+          
+         return UserItem.some(obj2 => product.product.itemId === obj2.itemId)
+
+         
+        }
+
+
+       );
+
+       console.log(filteredProducts)
+       res.send(filteredProducts);
+  
+  
+  });
 
  
 
