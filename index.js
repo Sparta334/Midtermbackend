@@ -179,7 +179,6 @@ app.post('/BackEnd/DetailHome',( req, res) => {
 app.post('/BackEnd/Profile',( req, res) => {
 
 
-  let UserItem = null;
   const userData = req.body.data.UserData;
 
 
@@ -188,39 +187,40 @@ app.post('/BackEnd/Profile',( req, res) => {
       
       console.log(response);
       const sortedArray = response.sort((a, b) => b.timestamp - a.timestamp)
-      UserItem = sortedArray.slice(0,5).map((product) => {
+      const UserItem = sortedArray.slice(0,5).map((product) => {
         return { product };
       });
       console.log("limitedProducts : " +UserItem);
-     
+      
+      client.send(new rqs.ListItems({
+        // optional parameters:
+        'returnProperties': true,
+      }),  (err, response) => {
+        console.log("response : " +response);
+    
+        
+            const filteredProducts = UserItem.filter((product) => {
+              
+              
+             return response.some(obj2 => product.itemId === obj2.itemId)
+    
+             
+            }
+    
+    
+           );
+    
+           console.log(filteredProducts)
+           res.send(filteredProducts);
+      
+      
+      });
+    
        
     }
   );
 
-  client.send(new rqs.ListItems({
-    // optional parameters:
-    'returnProperties': true,
-  }),  (err, response) => {
-    console.log("response : " +response);
-
-    
-        const filteredProducts = UserItem.filter((product) => {
-          
-          
-         return response.some(obj2 => product.itemId === obj2.itemId)
-
-         
-        }
-
-
-       );
-
-       console.log(filteredProducts)
-       res.send(filteredProducts);
-  
-  
-  });
-
+ 
 
 
  })
