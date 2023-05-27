@@ -187,7 +187,9 @@ app.post('/BackEnd/Profile',( req, res) => {
       
       console.log(response);
       const sortedArray = response.sort((a, b) => b.timestamp - a.timestamp)
-      const UserItem = sortedArray.slice(0,5);
+      const UserItem = sortedArray.slice(0,5).map((product) => {
+        return { product };
+      });
       console.log("limitedProducts : " +UserItem);
       
       client.send(new rqs.ListItems({
@@ -196,10 +198,10 @@ app.post('/BackEnd/Profile',( req, res) => {
         console.log("response : " +response);
     
         
-            const filteredProducts = UserItem.filter((product) => {
+            const filteredProducts = response.filter((product) => {
               
               
-             return response.some(obj2 => product.itemId === obj2.itemId)
+             return UserItem.some(obj2 => product.itemId === obj2.itemId)
     
              
             }
