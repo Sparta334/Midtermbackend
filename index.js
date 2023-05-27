@@ -187,9 +187,7 @@ app.post('/BackEnd/Profile',( req, res) => {
     (err, response) => {
       
       console.log(response);
-      const limitedProducts = response.slice(-5).map((product) => {
-        return { product };
-      });
+      const limitedProducts = response.slice(-5);
       console.log("limitedProducts : " +limitedProducts);
       client.send(new rqs.ListItems({
         // optional parameters:
