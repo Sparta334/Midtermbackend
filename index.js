@@ -184,7 +184,7 @@ app.post('/BackEnd/Profile',( req, res) => {
       console.log(response);
       const sortedArray = response.sort((a, b) => b.timestamp - a.timestamp)
       console.log("sortedArray"+JSON.stringify(sortedArray));
-      UserItem = sortedArray.slice(0,5);
+      UserItem = sortedArray.slice(0,5).map(obj => ({ itemId: obj.itemId }));;
       console.log("limitedProducts : " +JSON.stringify(UserItem));
       
      
@@ -193,14 +193,8 @@ app.post('/BackEnd/Profile',( req, res) => {
   );
 
   
-  const itemIds = [];
-  
-  for (const item of UserItem) {
-    const itemId = UserItem.itemId;
-    itemIds.push(itemId);
-  }
 
-  client.send(new rqs.SearchItems("undefined", itemIds  , 1, {
+  client.send(new rqs.SearchItems("undefined", UserItem.map(obj => obj.itemId ) , 5, {
     'cascadeCreate': false,
     'returnProperties': true,
   }), (err, response) =>{
