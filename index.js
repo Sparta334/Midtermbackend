@@ -232,10 +232,16 @@ app.post('/BackEnd/Profile',( req, res) => {
   const userData = req.body.data.UserData;
 
 
-  client.send(new rqs.AddUser(JSON.stringify(userData)));
-  console.log(userData)
+  client.send(new rqs.AddUser(userData),
   
-  })
+  (err, response) =>{
+    
+    console.log(response)
+    
+  });
+  
+  
+ })
 
 
 
