@@ -195,6 +195,9 @@ app.post('/BackEnd/Profile',( req, res) => {
   const firstItem = UserItem;
   const itemId = firstItem.itemId;
 
+  console.log("Result : " +UserItem.itemId);
+      
+
   client.send(new rqs.SearchItems("undefined", UserItem.itemId, 1, {
     'cascadeCreate': false,
     'returnProperties': true,
