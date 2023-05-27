@@ -199,7 +199,7 @@ app.post('/BackEnd/Profile',( req, res) => {
             const filteredProducts = limitedProducts.filter((product) => {
               
 
-             return  response.some(obj2 => limitedProducts.itemId === obj2.itemId)
+             return  response.some(obj2 => product.itemId === obj2.itemId)
     
              
             }
