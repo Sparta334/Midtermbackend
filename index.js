@@ -233,6 +233,7 @@ app.post('/BackEnd/Profile',( req, res) => {
 
 
   client.send(new rqs.AddUser(userData));
+  console.log(userData)
   
   })
 
