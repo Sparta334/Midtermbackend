@@ -24,10 +24,11 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
 var client = new recombee.ApiClient(
-  'exodia-the-forbidden-one-prod', 
-  'rNC3NWh1C7ZwjeMxVqMBwNEsWoKE2OWtqVjO0jpX8EGpsYbsHCLWC81IstdlXyc9', 
-  { 'region': 'ap-se' }
+  'exodia-the-forbidden-one-dev', 
+  'bx6IIFrZ7tzVnBplVVGhaQCdUKLVHWcELOMsUWH1orFxefDJtPuOzIFGT8Ck7Gdn', 
+  { region: 'ap-se' }
 );
 
 function findObjectByPropertyValue(jsonArray, propertyName, targetValue) {
@@ -45,21 +46,14 @@ app.get('/BackEnd/SearchContent/:value' , (req ,res) =>{
     const value = req.params.value;
     
      client.send(new rqs.ListItems({
-        // optional parameters:
-        'returnProperties': true
+        'filter' : "$value$ in 'ProductName'",
+        'count' : 5,
+        'returnProperties': true,
       }) , (err, response) =>{
-        
-        const filteredProducts = response.filter((product) => {
-            return product.ProductName.toLowerCase().includes(value.toLowerCase());
-        });
-
-        const limitedProducts = filteredProducts.slice(0, 5).map((product) => {
-            return { product };
-          });
-
+      
   
-        console.log(limitedProducts)
-        res.send(limitedProducts)
+        console.log(response)
+        res.send(response)
 
       } )
 
