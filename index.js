@@ -176,7 +176,6 @@ app.post('/BackEnd/Profile',( req, res) => {
 
 
   const userData = req.body.data.UserData;
-  let UserItem = [];
 
   client.send(new rqs.ListUserDetailViews(userData),
     (err, response) => {
@@ -184,10 +183,23 @@ app.post('/BackEnd/Profile',( req, res) => {
       console.log(response);
       const sortedArray = response.sort((a, b) => b.timestamp - a.timestamp)
       console.log("sortedArray"+JSON.stringify(sortedArray));
-      UserItem = sortedArray.slice(1);
+      const UserItem = sortedArray.slice(1);
       console.log("limitedProducts : " +JSON.stringify(UserItem));
       
-     
+      console.log("Result : " +UserItem.itemId);
+      
+
+      client.send(new rqs.SearchItems("undefined", UserItem.itemId, 1, {
+        'cascadeCreate': false,
+        'returnProperties': true,
+      }), (err, response) =>{
+
+          console.log(response)
+          res.send(response);
+      
+      
+      });
+
        
     }
   );
@@ -195,20 +207,7 @@ app.post('/BackEnd/Profile',( req, res) => {
   const firstItem = UserItem;
   const itemId = firstItem.itemId;
 
-  console.log("Result : " +UserItem.itemId);
-      
-
-  client.send(new rqs.SearchItems("undefined", UserItem.itemId, 1, {
-    'cascadeCreate': false,
-    'returnProperties': true,
-  }), (err, response) =>{
-
-       console.log(response)
-       res.send(response);
-  
-  
-  });
-
+ 
  
 
 
