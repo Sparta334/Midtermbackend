@@ -192,26 +192,13 @@ app.post('/BackEnd/Profile',( req, res) => {
     }
   );
 
-  client.send(new rqs.ListItems({
-    'filter' : "$UserItem$ in 'ProductName'",
-    'returnProperties': true
-    }) , (err, response) =>{
-    console.log("response : " +response);
+  client.send(new rqs.SearchItems("undefined", UserItem, 1, {
+    'cascadeCreate': false,
+    'returnProperties': true,
+  }), (err, response) =>{
 
-    
-        const filteredProducts = response.filter((produce) => {
-          
-          
-         return UserItem.some(obj2 => produce.itemId === obj2.itemId)
-
-         
-        }
-
-
-       );
-
-       console.log(filteredProducts)
-       res.send(filteredProducts);
+       console.log(response)
+       res.send(response);
   
   
   });
