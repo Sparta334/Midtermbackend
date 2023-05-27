@@ -184,7 +184,7 @@ app.post('/BackEnd/Profile',( req, res) => {
       console.log(response);
       const sortedArray = response.sort((a, b) => b.timestamp - a.timestamp)
       console.log("sortedArray"+JSON.stringify(sortedArray));
-      UserItem = sortedArray.slice(0,5);
+      UserItem = JSON.parse(sortedArray.slice(0,5));
       console.log("limitedProducts : " +JSON.stringify(UserItem));
       
      
