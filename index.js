@@ -200,13 +200,13 @@ app.post('/BackEnd/Profile',( req, res) => {
     // optional parameters:
     'returnProperties': true
     }) , (err, response) =>{
-    console.log("response : " +response.data);
+    console.log("response : " +response);
 
     
-        const filteredProducts = response.data.filter((produce) => {
+        const filteredProducts = response.filter((produce) => {
           
           
-         return UserItem.data.some(obj2 => produce.itemId === obj2.product.itemId)
+         return UserItem.some(obj2 => produce.product.itemId === obj2.itemId)
 
          
         }
