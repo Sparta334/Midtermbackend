@@ -187,13 +187,10 @@ app.post('/BackEnd/Profile',( req, res) => {
       
       console.log(response);
       const sortedArray = response.sort((a, b) => b.timestamp - a.timestamp)
-      const UserItem = sortedArray.slice(0,5).map((product) => {
-        return { product };
-      });
+      const UserItem = sortedArray.slice(0,5);
       console.log("limitedProducts : " +UserItem);
       
       client.send(new rqs.ListItems({
-        // optional parameters:
         'returnProperties': true,
       }),  (err, response) => {
         console.log("response : " +response);
