@@ -191,7 +191,7 @@ app.post('/BackEnd/Profile',( req, res) => {
       UserItem = sortedArray.slice(0,5).map((product) => {
         return { product };
       });
-      console.log("limitedProducts : " +UserItem);
+      console.log("limitedProducts : " +JSON.stringify(UserItem));
       
      
        
@@ -202,13 +202,13 @@ app.post('/BackEnd/Profile',( req, res) => {
     // optional parameters:
     'returnProperties': true
     }) , (err, response) =>{
-    console.log("response : " +response);
+    console.log("response : " +JSON.stringify(response));
 
     
         const filteredProducts = response.filter((product) => {
           
           
-         return UserItem.some(obj2 => product.product.itemId === obj2.itemId)
+         return UserItem.some(obj2 => product.itemId === obj2.itemId)
 
          
         }
