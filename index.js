@@ -45,7 +45,7 @@ app.get('/BackEnd/SearchContent/:value' , (req ,res) =>{
 
     const value = req.params.value;
     
-    client.send(new recombee.SearchItems("bar", value, 5, {
+    client.send(new rqs.SearchItems("bar", value, 5, {
       'cascadeCreate': false,
       'returnProperties': true,
     }), (err, response) =>{
