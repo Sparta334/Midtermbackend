@@ -225,9 +225,16 @@ app.post('/BackEnd/Profile',( req, res) => {
 
  })
 
+ 
+ app.post('/BackEnd/Add',( req, res) => {
 
 
+  const userData = req.body.data.UserData;
 
+
+  client.send(new rqs.AddUser(userData));
+  
+  })
 
 
 
