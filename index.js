@@ -45,11 +45,10 @@ app.get('/BackEnd/SearchContent/:value' , (req ,res) =>{
 
     const value = req.params.value;
     
-     client.send(new rqs.ListItems({
-        'filter' : "$value$ in 'ProductName'",
-        'count' : 5,
-        'returnProperties': true,
-      }) , (err, response) =>{
+    client.send(new recombee.SearchItems("bar", value, 5, {
+      'cascadeCreate': false,
+      'returnProperties': true,
+    }), (err, response) =>{
       
   
         console.log(response)
@@ -191,7 +190,7 @@ app.post('/BackEnd/Profile',( req, res) => {
   );
 
   client.send(new rqs.ListItems({
-    // optional parameters:
+    'filter' : "$UserItem$ in 'ProductName'",
     'returnProperties': true
     }) , (err, response) =>{
     console.log("response : " +response);
