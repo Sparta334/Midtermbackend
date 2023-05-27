@@ -183,10 +183,10 @@ app.post('/BackEnd/Profile',( req, res) => {
       console.log(response);
       const sortedArray = response.sort((a, b) => b.timestamp - a.timestamp)
       console.log("sortedArray"+JSON.stringify(sortedArray));
-      const UserItem = sortedArray.slice(1);
+      const UserItem = sortedArray[0]
       console.log("limitedProducts : " +JSON.stringify(UserItem));
       
-      console.log("Result : " +UserItem.itemId);
+      console.log("Result : " + UserItem.itemId);
       
 
       client.send(new rqs.SearchItems("undefined", UserItem.itemId, 1, {
