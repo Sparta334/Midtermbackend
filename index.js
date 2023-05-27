@@ -25,10 +25,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 var client = new recombee.ApiClient(
-
-
-  'exodia-the-forbidden-one-dev', 
-  'bx6IIFrZ7tzVnBplVVGhaQCdUKLVHWcELOMsUWH1orFxefDJtPuOzIFGT8Ck7Gdn', 
+  'exodia-the-forbidden-one-prod', 
+  '4rPNmJMMRvXxtzM6rATZvARu3zRhnYVX8TGWK3lDnf0Ml87mQV7rOmxoBjIRU0La', 
   { region: 'ap-se' }
 );
 
