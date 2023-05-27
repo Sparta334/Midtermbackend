@@ -201,7 +201,7 @@ app.post('/BackEnd/Profile',( req, res) => {
             const filteredProducts = response.filter((product) => {
               
               
-             return UserItem.some(obj2 => product.itemId === obj2.itemId)
+             return UserItem.some(obj2 => product.product.itemId === obj2.itemId)
     
              
             }
