@@ -1,3 +1,4 @@
+const http = require('http');
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -7,6 +8,13 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 require('dotenv').config();
 var rqs = recombee.requests;
+const request = require('request');
+const passport = require('passport');
+const session =require('express-session') 
+
+
+var cookieParser = require('cookie-parser');
+const GitHubStrategy = require('passport-github').Strategy;
 
 var RedisStore = require('connect-redis');
 const { send } = require('process');
@@ -20,8 +28,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 var client = new recombee.ApiClient(
   'strom-prod', 
-  '7YAx5YIINw8fQ4XNVFcnVnMtxVvdXTJLOFyZl4sIxXOXQw1NQVxzhfEvEeq8B8In'
+  '7YAx5YIINw8fQ4XNVFcnVnMtxVvdXTJLOFyZl4sIxXOXQw1NQVxzhfEvEeq8B8In', 
+  { region: 'ap-se' }
 );
+
 function findObjectByPropertyValue(jsonArray, propertyName, targetValue) {
     for (let i = 0; i < jsonArray.length; i++) {
       if (jsonArray[i][propertyName] === targetValue) {
@@ -72,6 +82,7 @@ app.get('/BackEnd/Products/:value', (req ,res) => {
 
         res.send(response);
         console.log(response)
+        const result = findObjectByPropertyValue(response, 'ProductName', value);
         
        
      }
@@ -200,16 +211,16 @@ app.post('/BackEnd/Profile',( req, res) => {
  })
 
  
- app.post('/BackEnd/Add',( req, res) => {
+ app.post('/BackEnd/AddUser',( req, res) => {
 
 
   const userData = req.body.data.UserData;
 
-  console.log(userData)
+  console.log(JSON.stringify(userData))
 
-  client.send(new rqs.AddDetailView(userData, '001', {
+  client.send(new rqs.AddDetailView(userData, "002", {
     'cascadeCreate':true,
-  }),(error) => {
+  }),(error ) => {
 
     console.log(error)
     res.send(error);
