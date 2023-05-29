@@ -192,7 +192,7 @@ app.post('/BackEnd/Profile',( req, res) => {
       const itemID = UserItem.itemId;
        
     client.send(new rqs.ListItems({
-      'filter': "string(itemID)' == context_item[\"itemId\"]",
+      'filter': "'itemID' == context_item[\"itemId\"]",
       'count': 1,
       'returnProperties': true,
     
