@@ -189,13 +189,14 @@ app.post('/BackEnd/Profile',( req, res) => {
       console.log("limitedProducts : " +JSON.stringify(UserItem));
       
       console.log("Result : " + UserItem.itemId);
-      
+      const itemID = UserItem.itemId;
        
-    client.send(new rqs.SearchItems(userData, UserItem.itemId, 1, {
-      'cascadeCreate': false,
-      'includedProperties': ['itemId'],
+    client.send(new rqs.ListItems({
+      'filter': "string(itemID)' == context_item[\"itemId\"]",
+      'count': 1,
       'returnProperties': true,
-    }), (err, responses) =>{
+    
+    }) ), (err, responses) =>{
   
         console.log(responses)
         res.send(responses);
