@@ -220,6 +220,7 @@ app.post('/BackEnd/Profile',( req, res) => {
   client.send(new rqs.AddUser(userData), (error )=>{
     
     console.log(error)
+    res.send()
     
   
   });
