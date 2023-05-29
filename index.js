@@ -7,13 +7,6 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 require('dotenv').config();
 var rqs = recombee.requests;
-const request = require('request');
-const passport = require('passport');
-const session =require('express-session') 
-
-
-var cookieParser = require('cookie-parser');
-const GitHubStrategy = require('passport-github').Strategy;
 
 var RedisStore = require('connect-redis');
 const { send } = require('process');
@@ -79,7 +72,6 @@ app.get('/BackEnd/Products/:value', (req ,res) => {
 
         res.send(response);
         console.log(response)
-        const result = findObjectByPropertyValue(response, 'ProductName', value);
         
        
      }
