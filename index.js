@@ -196,19 +196,16 @@ app.post('/BackEnd/Profile',( req, res) => {
       'count': 1,
       'returnProperties': true,
     
-    }) ), (err, responses) =>{
+    }) , (err, responses) =>{
   
         console.log(responses)
         res.send(responses);
     
     
     });
-    }
-  )
-
   
   
-  
+  })
 
 
  
