@@ -43,7 +43,8 @@ function findObjectByPropertyValue(jsonArray, propertyName, targetValue) {
  
 app.get('/BackEnd/SearchContent/:value' , (req ,res) =>{
 
-    const value = req.params.value;
+  const value = decodeURIComponent(req.params.value);
+
     
     client.send(new rqs.SearchItems("undefined", value, 5, {
       'cascadeCreate': false,
