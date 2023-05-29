@@ -1,4 +1,3 @@
-const http = require('http');
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -28,8 +27,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 var client = new recombee.ApiClient(
   'strom-prod', 
-  '7YAx5YIINw8fQ4XNVFcnVnMtxVvdXTJLOFyZl4sIxXOXQw1NQVxzhfEvEeq8B8In', 
-  { region: 'ap-se' }
+  '7YAx5YIINw8fQ4XNVFcnVnMtxVvdXTJLOFyZl4sIxXOXQw1NQVxzhfEvEeq8B8In'
 );
 function findObjectByPropertyValue(jsonArray, propertyName, targetValue) {
     for (let i = 0; i < jsonArray.length; i++) {
