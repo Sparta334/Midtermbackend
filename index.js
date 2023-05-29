@@ -195,7 +195,8 @@ app.post('/BackEnd/Profile',( req, res) => {
 
        
     }
-  ).then( ( ) =>{
+  )
+
   
   
     client.send(new rqs.SearchItems("undefined", USer, 1, {
@@ -209,7 +210,7 @@ app.post('/BackEnd/Profile',( req, res) => {
     
     });
   
-  })
+
 
  
 
