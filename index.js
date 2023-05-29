@@ -25,12 +25,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
+
 var client = new recombee.ApiClient(
   'strom-prod', 
   '7YAx5YIINw8fQ4XNVFcnVnMtxVvdXTJLOFyZl4sIxXOXQw1NQVxzhfEvEeq8B8In', 
   { region: 'ap-se' }
 );
-
 function findObjectByPropertyValue(jsonArray, propertyName, targetValue) {
     for (let i = 0; i < jsonArray.length; i++) {
       if (jsonArray[i][propertyName] === targetValue) {
@@ -217,11 +217,12 @@ app.post('/BackEnd/Profile',( req, res) => {
 
   console.log(userData)
 
-  client.send(new rqs.AddUser(userData), (error )=>{
-    
+  client.send(new rqs.AddDetailView(userData, '001', {
+    'cascadeCreate':true,
+  }),(error) => {
+
     console.log(error)
-    res.send(error)
-    
+    res.send(error);
   
   });
   
