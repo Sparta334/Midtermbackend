@@ -214,15 +214,15 @@ app.post('/BackEnd/Profile',( req, res) => {
 
 
   const userData = req.body.data.UserData;
-  const data = '001'
 
   console.log(userData)
 
-  client.send(new rqs.AddDetailView(userData,data, {'cascadeCreate': true}),
-    (err, response) => {
-      console.log(response)
-    }
-  );
+  client.send(new rqs.AddUser(userData), (error )=>{
+    
+    console.log(error)
+    
+  
+  });
   
   
 
