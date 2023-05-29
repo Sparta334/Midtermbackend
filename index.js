@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 var client = new recombee.ApiClient(
   'exodia-the-forbidden-one-dev', 
-  'bx6IIFrZ7tzVnBplVVGhaQCdUKLVHWcELOMsUWH1orFxefDJtPuOzIFGT8Ck7Gdn', 
+  'fwjWVUyiUQ0Sbyie9VAv9P6NOrJhAsHIuGGRgVDZShgsdlrggXtzLPp9BQoNLkoj', 
   { region: 'ap-se' }
 );
 
@@ -43,9 +43,9 @@ function findObjectByPropertyValue(jsonArray, propertyName, targetValue) {
  
 app.get('/BackEnd/SearchContent/:value' , (req ,res) =>{
 
-  const value = decodeURIComponent(req.params.value);
+   const value = decodeURIComponent(req.params.value);
 
-    
+    console.log(value)
     client.send(new rqs.SearchItems("undefined", value, 5, {
       'cascadeCreate': false,
       'returnProperties': true,
@@ -214,16 +214,15 @@ app.post('/BackEnd/Profile',( req, res) => {
 
 
   const userData = req.body.data.UserData;
+  const data = '001'
 
-  console.log(JSON.stringify(userData))
+  console.log(userData)
 
-  client.send(new rqs.AddDetailView(userData, "001", {
-    'cascadeCreate':true,
-  }),(error ,response ) => {
-
-    res.send("seucces");
-  
-  });
+  client.send(new rqs.AddDetailView(userData,data, {'cascadeCreate': true}),
+    (err, response) => {
+      console.log(response)
+    }
+  );
   
   
 
