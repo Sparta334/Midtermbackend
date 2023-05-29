@@ -190,13 +190,13 @@ app.post('/BackEnd/Profile',( req, res) => {
       console.log("Result : " + UserItem.itemId);
       
 
-      client.send(new rqs.SearchItems("undefined",UserItem.itemId, 1, {
+      client.send(new rqs.SearchItems("undefined", UserItem.itemId, 1, {
         'cascadeCreate': false,
         'returnProperties': true,
-      }), (err) =>{
+      }), (err, resw) =>{
 
-          console.log(err)
-          res.send(err);
+          console.log(resw)
+          res.send(resw);
       
       
       });
