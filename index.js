@@ -25,11 +25,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-
 var client = new recombee.ApiClient(
-  'strom-prod', 
-  '7YAx5YIINw8fQ4XNVFcnVnMtxVvdXTJLOFyZl4sIxXOXQw1NQVxzhfEvEeq8B8In', 
-  { region: 'ap-se' }
+  'storm-prod', 
+  'yENw0SWJNMeMDeeIxgWx3e5iPqGOfRSRgSjQyzOayJVDsSAp5feLkIBLL3TrijHd', 
+  { region: 'us-west' }
 );
 
 function findObjectByPropertyValue(jsonArray, propertyName, targetValue) {
