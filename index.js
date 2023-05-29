@@ -190,25 +190,22 @@ app.post('/BackEnd/Profile',( req, res) => {
       
       console.log("Result : " + UserItem.itemId);
       
-      USer = UserItem.itemId
-      
-
        
+    client.send(new rqs.SearchItems("undefined", UserItem.itemId, 1, {
+      'cascadeCreate': false,
+      'returnProperties': true,
+    }), (err, responses) =>{
+  
+        console.log(responses)
+        res.send(responses);
+    
+    
+    });
     }
   )
 
   
   
-    client.send(new rqs.SearchItems("undefined", USer, 1, {
-      'cascadeCreate': false,
-      'returnProperties': true,
-    }), (err, response) =>{
-  
-        console.log(response)
-        res.send(response);
-    
-    
-    });
   
 
 
