@@ -177,6 +177,7 @@ app.post('/BackEnd/Profile',( req, res) => {
 
 
   const userData = req.body.data.UserData;
+  let USer = null;
 
   client.send(new rqs.ListUserDetailViews(userData),
     (err, response) => {
@@ -189,23 +190,28 @@ app.post('/BackEnd/Profile',( req, res) => {
       
       console.log("Result : " + UserItem.itemId);
       
-
+      USer = UserItem.itemId
       
 
        
     }
-  );
-
-  client.send(new rqs.SearchItems("undefined", UserItem.itemId, 1, {
-    'cascadeCreate': false,
-    'returnProperties': true,
-  }), (err, response) =>{
-
-      console.log(response)
-      res.send(response);
+  ).then( ( ) =>{
   
   
-  });
+    client.send(new rqs.SearchItems("undefined", USer, 1, {
+      'cascadeCreate': false,
+      'returnProperties': true,
+    }), (err, response) =>{
+  
+        console.log(response)
+        res.send(response);
+    
+    
+    });
+  
+  })
+
+ 
 
 
  })
